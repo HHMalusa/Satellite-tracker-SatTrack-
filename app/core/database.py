@@ -1,8 +1,22 @@
 from sqlalchemy import create_engine
+from sqlalchemy.engine import URL
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "postgresql+psycopg2://postgres:password@localhost:5432/orbitwatch"
+DATABASE_URL = URL.create(
+    "postgresql+psycopg2",
+    username="postgres",
+    password="REDsiren@911",
+    host="localhost",
+    port=5432,
+    database="SatTrack"
+)
 
-engine = create_enigine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_engine(DATABASE_URL)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
 Base = declarative_base()
